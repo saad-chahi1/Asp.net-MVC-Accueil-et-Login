@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="asp_projectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="activite">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="titre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="state" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="responsable" Type="Int32" />
+    <Property Name="piece_joint" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BDE" Type="Int32" />
+    <NavigationProperty Name="BDE1" Relationship="Self.FK_activite_BDE" FromRole="activite" ToRole="BDE" />
+    <NavigationProperty Name="Responsable1" Relationship="Self.FK_activite_Responsable" FromRole="activite" ToRole="Responsable" />
+    <NavigationProperty Name="gallerie" Relationship="Self.FK_gallerie_activite" FromRole="activite" ToRole="gallerie" />
+  </EntityType>
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="id_admin" />
+    </Key>
+    <Property Name="id_admin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mdp" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="association">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="BDE">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prenom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="activite" Relationship="Self.FK_activite_BDE" FromRole="BDE" ToRole="activite" />
+    <NavigationProperty Name="membre_BDE" Relationship="Self.FK_membre_BDE_BDE" FromRole="BDE" ToRole="membre_BDE" />
+  </EntityType>
+  <EntityType Name="club">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="titre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="date_creation" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="logo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_respo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Responsable" Relationship="Self.FK_club_Responsable" FromRole="club" ToRole="Responsable" />
+  </EntityType>
+  <EntityType Name="filiere">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="departement" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="laureat" Relationship="Self.FK_laureat_filiere" FromRole="filiere" ToRole="laureat" />
+  </EntityType>
+  <EntityType Name="gallerie">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="path" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_activite" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="activite" Relationship="Self.FK_gallerie_activite" FromRole="gallerie" ToRole="activite" />
+  </EntityType>
+  <EntityType Name="laureat">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prenom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="societe_actuelle" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="salaire" Type="Single" Nullable="false" />
+    <Property Name="filiere" Type="Int32" Nullable="false" />
+    <Property Name="age" Type="Int32" Nullable="false" />
+    <Property Name="bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="state" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="filiere1" Relationship="Self.FK_laureat_filiere" FromRole="laureat" ToRole="filiere" />
+  </EntityType>
+  <EntityType Name="membre_BDE">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prenom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="role" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="picture" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="bde_id" Type="Int32" />
+    <NavigationProperty Name="BDE" Relationship="Self.FK_membre_BDE_BDE" FromRole="membre_BDE" ToRole="BDE" />
+  </EntityType>
+  <EntityType Name="Responsable">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prenom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="activite" Relationship="Self.FK_activite_Responsable" FromRole="Responsable" ToRole="activite" />
+    <NavigationProperty Name="club" Relationship="Self.FK_club_Responsable" FromRole="Responsable" ToRole="club" />
+  </EntityType>
+  <Association Name="FK_activite_BDE">
+    <End Role="BDE" Type="Self.BDE" Multiplicity="0..1" />
+    <End Role="activite" Type="Self.activite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BDE">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="activite">
+        <PropertyRef Name="BDE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_activite_Responsable">
+    <End Role="Responsable" Type="Self.Responsable" Multiplicity="0..1" />
+    <End Role="activite" Type="Self.activite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Responsable">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="activite">
+        <PropertyRef Name="responsable" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_gallerie_activite">
+    <End Role="activite" Type="Self.activite" Multiplicity="1" />
+    <End Role="gallerie" Type="Self.gallerie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="activite">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="gallerie">
+        <PropertyRef Name="id_activite" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_membre_BDE_BDE">
+    <End Role="BDE" Type="Self.BDE" Multiplicity="0..1" />
+    <End Role="membre_BDE" Type="Self.membre_BDE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BDE">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="membre_BDE">
+        <PropertyRef Name="bde_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_club_Responsable">
+    <End Role="Responsable" Type="Self.Responsable" Multiplicity="1" />
+    <End Role="club" Type="Self.club" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Responsable">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="club">
+        <PropertyRef Name="id_respo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_laureat_filiere">
+    <End Role="filiere" Type="Self.filiere" Multiplicity="1" />
+    <End Role="laureat" Type="Self.laureat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="filiere">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="laureat">
+        <PropertyRef Name="filiere" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="asp_projectEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="activite" EntityType="Self.activite" />
+    <EntitySet Name="admin" EntityType="Self.admin" />
+    <EntitySet Name="association" EntityType="Self.association" />
+    <EntitySet Name="BDE" EntityType="Self.BDE" />
+    <EntitySet Name="club" EntityType="Self.club" />
+    <EntitySet Name="filiere" EntityType="Self.filiere" />
+    <EntitySet Name="gallerie" EntityType="Self.gallerie" />
+    <EntitySet Name="laureat" EntityType="Self.laureat" />
+    <EntitySet Name="membre_BDE" EntityType="Self.membre_BDE" />
+    <EntitySet Name="Responsable" EntityType="Self.Responsable" />
+    <AssociationSet Name="FK_activite_BDE" Association="Self.FK_activite_BDE">
+      <End Role="BDE" EntitySet="BDE" />
+      <End Role="activite" EntitySet="activite" />
+    </AssociationSet>
+    <AssociationSet Name="FK_activite_Responsable" Association="Self.FK_activite_Responsable">
+      <End Role="Responsable" EntitySet="Responsable" />
+      <End Role="activite" EntitySet="activite" />
+    </AssociationSet>
+    <AssociationSet Name="FK_gallerie_activite" Association="Self.FK_gallerie_activite">
+      <End Role="activite" EntitySet="activite" />
+      <End Role="gallerie" EntitySet="gallerie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_membre_BDE_BDE" Association="Self.FK_membre_BDE_BDE">
+      <End Role="BDE" EntitySet="BDE" />
+      <End Role="membre_BDE" EntitySet="membre_BDE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_club_Responsable" Association="Self.FK_club_Responsable">
+      <End Role="Responsable" EntitySet="Responsable" />
+      <End Role="club" EntitySet="club" />
+    </AssociationSet>
+    <AssociationSet Name="FK_laureat_filiere" Association="Self.FK_laureat_filiere">
+      <End Role="filiere" EntitySet="filiere" />
+      <End Role="laureat" EntitySet="laureat" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

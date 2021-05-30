@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="asp_projectModelStoreContainer" CdmEntityContainer="asp_projectEntities">
+    <EntitySetMapping Name="activite">
+      <EntityTypeMapping TypeName="asp_projectModel.activite">
+        <MappingFragment StoreEntitySet="activite">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="titre" ColumnName="titre" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="responsable" ColumnName="responsable" />
+          <ScalarProperty Name="piece_joint" ColumnName="piece_joint" />
+          <ScalarProperty Name="BDE" ColumnName="BDE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="admin">
+      <EntityTypeMapping TypeName="asp_projectModel.admin">
+        <MappingFragment StoreEntitySet="admin">
+          <ScalarProperty Name="id_admin" ColumnName="id_admin" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="mdp" ColumnName="mdp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="association">
+      <EntityTypeMapping TypeName="asp_projectModel.association">
+        <MappingFragment StoreEntitySet="association">
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BDE">
+      <EntityTypeMapping TypeName="asp_projectModel.BDE">
+        <MappingFragment StoreEntitySet="BDE">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="club">
+      <EntityTypeMapping TypeName="asp_projectModel.club">
+        <MappingFragment StoreEntitySet="club">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="titre" ColumnName="titre" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="date_creation" ColumnName="date_creation" />
+          <ScalarProperty Name="logo" ColumnName="logo" />
+          <ScalarProperty Name="id_respo" ColumnName="id_respo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="filiere">
+      <EntityTypeMapping TypeName="asp_projectModel.filiere">
+        <MappingFragment StoreEntitySet="filiere">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="departement" ColumnName="departement" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gallerie">
+      <EntityTypeMapping TypeName="asp_projectModel.gallerie">
+        <MappingFragment StoreEntitySet="gallerie">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="path" ColumnName="path" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="id_activite" ColumnName="id_activite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="laureat">
+      <EntityTypeMapping TypeName="asp_projectModel.laureat">
+        <MappingFragment StoreEntitySet="laureat">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="societe_actuelle" ColumnName="societe_actuelle" />
+          <ScalarProperty Name="salaire" ColumnName="salaire" />
+          <ScalarProperty Name="filiere" ColumnName="filiere" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="bio" ColumnName="bio" />
+          <ScalarProperty Name="state" ColumnName="state" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="membre_BDE">
+      <EntityTypeMapping TypeName="asp_projectModel.membre_BDE">
+        <MappingFragment StoreEntitySet="membre_BDE">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="picture" ColumnName="picture" />
+          <ScalarProperty Name="bde_id" ColumnName="bde_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Responsable">
+      <EntityTypeMapping TypeName="asp_projectModel.Responsable">
+        <MappingFragment StoreEntitySet="Responsable">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

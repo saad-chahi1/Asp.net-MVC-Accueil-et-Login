@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="asp_projectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="activite">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="titre" Type="text" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+    <Property Name="description" Type="text" Nullable="false" />
+    <Property Name="state" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="responsable" Type="int" />
+    <Property Name="piece_joint" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="BDE" Type="int" />
+  </EntityType>
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="id_admin" />
+    </Key>
+    <Property Name="id_admin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="mdp" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="association">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BDE">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="prenom" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="club">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="titre" Type="text" Nullable="false" />
+    <Property Name="description" Type="text" Nullable="false" />
+    <Property Name="date_creation" Type="date" Nullable="false" />
+    <Property Name="logo" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="id_respo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="filiere">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="departement" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="gallerie">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+    <Property Name="path" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="type" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="id_activite" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="laureat">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="prenom" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="societe_actuelle" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="salaire" Type="real" Nullable="false" />
+    <Property Name="filiere" Type="int" Nullable="false" />
+    <Property Name="age" Type="int" Nullable="false" />
+    <Property Name="bio" Type="text" Nullable="false" />
+    <Property Name="state" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="membre_BDE">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="prenom" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="role" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="picture" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="bde_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Responsable">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="prenom" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="password" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_activite_BDE">
+    <End Role="BDE" Type="Self.BDE" Multiplicity="0..1" />
+    <End Role="activite" Type="Self.activite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BDE">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="activite">
+        <PropertyRef Name="BDE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_activite_Responsable">
+    <End Role="Responsable" Type="Self.Responsable" Multiplicity="0..1" />
+    <End Role="activite" Type="Self.activite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Responsable">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="activite">
+        <PropertyRef Name="responsable" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_club_Responsable">
+    <End Role="Responsable" Type="Self.Responsable" Multiplicity="1" />
+    <End Role="club" Type="Self.club" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Responsable">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="club">
+        <PropertyRef Name="id_respo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_gallerie_activite">
+    <End Role="activite" Type="Self.activite" Multiplicity="1" />
+    <End Role="gallerie" Type="Self.gallerie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="activite">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="gallerie">
+        <PropertyRef Name="id_activite" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_laureat_filiere">
+    <End Role="filiere" Type="Self.filiere" Multiplicity="1" />
+    <End Role="laureat" Type="Self.laureat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="filiere">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="laureat">
+        <PropertyRef Name="filiere" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_membre_BDE_BDE">
+    <End Role="BDE" Type="Self.BDE" Multiplicity="0..1" />
+    <End Role="membre_BDE" Type="Self.membre_BDE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BDE">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="membre_BDE">
+        <PropertyRef Name="bde_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="asp_projectModelStoreContainer">
+    <EntitySet Name="activite" EntityType="Self.activite" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="association" EntityType="Self.association" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BDE" EntityType="Self.BDE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="club" EntityType="Self.club" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="filiere" EntityType="Self.filiere" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gallerie" EntityType="Self.gallerie" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="laureat" EntityType="Self.laureat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="membre_BDE" EntityType="Self.membre_BDE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Responsable" EntityType="Self.Responsable" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_activite_BDE" Association="Self.FK_activite_BDE">
+      <End Role="BDE" EntitySet="BDE" />
+      <End Role="activite" EntitySet="activite" />
+    </AssociationSet>
+    <AssociationSet Name="FK_activite_Responsable" Association="Self.FK_activite_Responsable">
+      <End Role="Responsable" EntitySet="Responsable" />
+      <End Role="activite" EntitySet="activite" />
+    </AssociationSet>
+    <AssociationSet Name="FK_club_Responsable" Association="Self.FK_club_Responsable">
+      <End Role="Responsable" EntitySet="Responsable" />
+      <End Role="club" EntitySet="club" />
+    </AssociationSet>
+    <AssociationSet Name="FK_gallerie_activite" Association="Self.FK_gallerie_activite">
+      <End Role="activite" EntitySet="activite" />
+      <End Role="gallerie" EntitySet="gallerie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_laureat_filiere" Association="Self.FK_laureat_filiere">
+      <End Role="filiere" EntitySet="filiere" />
+      <End Role="laureat" EntitySet="laureat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_membre_BDE_BDE" Association="Self.FK_membre_BDE_BDE">
+      <End Role="BDE" EntitySet="BDE" />
+      <End Role="membre_BDE" EntitySet="membre_BDE" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
